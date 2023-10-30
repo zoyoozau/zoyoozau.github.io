@@ -133,7 +133,7 @@ function initialize()
 	
 	new THREE.GLTFLoader()
 		.setPath( 'models/' )
-		.load( 'fish-2.mtl', function ( gltf ) {
+		.load( 'dna_animation.glb', function ( gltf ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
@@ -147,16 +147,6 @@ function initialize()
 				}, onProgress, onError );
 		});
 
-	
-		var loader = new GLTFLoader();
-            
-	loader.load( '../Items/bluesword.glb', function ( gltf )
-	{
-	    sword = gltf.scene;  // sword 3D object is loaded
-	    sword.scale.set(2, 2, 2);
-	    sword.position.y = 4;
-	    scene.add(sword);
-		} );
 
 	
 }
