@@ -129,18 +129,33 @@ function initialize()
 	
 
 
-let loader = new GLTFLoader();
-let autocar;
-loader.load('models/dna_animation.glb', (gltf) => {
-     autocar = gltf.scene;
-     autocar.rotation.y = Math.PI;
-     autocar.position.y = 0.001;
-     autocar.visible = true;
-
-     autocar.scale.set(0.985, 0.985, 0.985);
-     scene.add(autocar);
-   }
- );
+const loader = new GLTFLoader()
+loader.load(
+    'models/dna_animation.glb',
+    function (gltf) {
+        // gltf.scene.traverse(function (child) {
+        //     if ((child as THREE.Mesh).isMesh) {
+        //         const m = (child as THREE.Mesh)
+        //         m.receiveShadow = true
+        //         m.castShadow = true
+        //     }
+        //     if (((child as THREE.Light)).isLight) {
+        //         const l = (child as THREE.SpotLight)
+        //         l.castShadow = true
+        //         l.shadow.bias = -.003
+        //         l.shadow.mapSize.width = 2048
+        //         l.shadow.mapSize.height = 2048
+        //     }
+        // })
+        scene.add(gltf.scene)
+    },
+    (xhr) => {
+        console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+    },
+    (error) => {
+        console.log(error)
+    }
+)
 	
 }
 
