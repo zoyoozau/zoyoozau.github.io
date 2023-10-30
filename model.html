@@ -127,12 +127,20 @@ function initialize()
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }
 	
-	new THREE.GLTFLoader()
-		.setPath( 'models/' )
-		.load( 'dna_animation.glb', function ( gltf ) {
-		});
 
 
+let loader = new GLTFLoader();
+let autocar;
+loader.load('models/dna_animation.glb', (gltf) => {
+     autocar = gltf.scene;
+     autocar.rotation.y = Math.PI;
+     autocar.position.y = 0.001;
+     autocar.visible = true;
+
+     autocar.scale.set(0.985, 0.985, 0.985);
+     scene.add(autocar);
+   }
+ );
 	
 }
 
