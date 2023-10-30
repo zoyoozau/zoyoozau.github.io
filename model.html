@@ -24,10 +24,6 @@
   Based on the AR.js library and examples created by Jerome Etienne: https://github.com/jeromeetienne/AR.js/
 -->
 
-	<!-- 
-moo
-	
--->
 
 <script>
 
@@ -134,17 +130,6 @@ function initialize()
 	new THREE.GLTFLoader()
 		.setPath( 'models/' )
 		.load( 'dna_animation.glb', function ( gltf ) {
-			materials.preload();
-			new THREE.OBJLoader()
-				.setMaterials( materials )
-				.setPath( 'models/' )
-				.load( 'fish-2.obj', function ( group ) {
-					mesh0 = group.children[0];
-					mesh0.material.side = THREE.DoubleSide;
-					mesh0.position.y = 0.25;
-					mesh0.scale.set(0.25,0.25,0.25);
-					markerRoot1.add(mesh0);
-				}, onProgress, onError );
 		});
 
 
