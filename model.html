@@ -6,6 +6,7 @@
 	<script src='js/three.js'></script>
 	<script src='js/OBJLoader.js'></script>
 	<script src='js/MTLLoader.js'></script>
+	<script src='js/GLTFLoader.js'></script>
 	<!-- include jsartookit -->
 	<script src="jsartoolkit5/artoolkit.min.js"></script>
 	<script src="jsartoolkit5/artoolkit.api.js"></script>
@@ -130,9 +131,9 @@ function initialize()
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }
 	
-	new THREE.MTLLoader()
+	new THREE.GLTFLoader()
 		.setPath( 'models/' )
-		.load( 'fish-2.mtl', function ( materials ) {
+		.load( 'fish-2.mtl', function ( gltf ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
@@ -145,6 +146,19 @@ function initialize()
 					markerRoot1.add(mesh0);
 				}, onProgress, onError );
 		});
+
+	
+		var loader = new GLTFLoader();
+            
+	loader.load( '../Items/bluesword.glb', function ( gltf )
+	{
+	    sword = gltf.scene;  // sword 3D object is loaded
+	    sword.scale.set(2, 2, 2);
+	    sword.position.y = 4;
+	    scene.add(sword);
+		} );
+
+	
 }
 
 
